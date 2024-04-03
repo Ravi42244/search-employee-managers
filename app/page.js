@@ -18,7 +18,7 @@ useEffect(()=>{
 
   return (
   
-  <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-indigo-400 ">
+  <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 ">
    <div className="w-full flex-cols items-center justify-center    "> 
  
 <div className="h-[700px] mt-20 grid grid-rows-2 "  >
