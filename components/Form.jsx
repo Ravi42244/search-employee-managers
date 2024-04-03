@@ -86,6 +86,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
                       <FormItem>
                         <FormControl>
                           <Input
+                          className="rounded-full focus-visible:ring-0 focus-visible: focus-visible:ring-offset-0"
                             type="email"
                             placeholder="Work Email"
                             {...field}
@@ -126,7 +127,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
               <Button
               
 disabled={isPasteAndSearchLoading}
-              className={cn("bg-indigo-600 hover:bg-indigo-800 w-full", isSearchLoading && "")}
+              className={cn("bg-indigo-600 hover:bg-indigo-800 w-full rounded-full", isSearchLoading && "")}
               type="submit"
               
               >
@@ -136,7 +137,7 @@ disabled={isPasteAndSearchLoading}
               </Button>
               <Button
 disabled={isPasteAndSearchLoading}
-              className={cn("hover:bg-indigo-100 hover:text-indigo-900","")}
+              className={cn("hover:bg-indigo-100 hover:text-indigo-900 rounded-full","")}
               type="reset"
                 variant="outline"
                 onClick={() => {
