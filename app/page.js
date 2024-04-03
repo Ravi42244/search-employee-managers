@@ -30,8 +30,8 @@ useEffect(()=>{
   {empData  ? <div className=" flex items-center justify-center ">
     <CardDisplay empData={empData} />
 </div> : <div className="w-full flex items-center justify-center -mt-24 text-xl "><div className="w-1/2 space-y-5 scroll-mt-60  transition ease-in-out delay-150  duration-300" id="Note_section">
-  <span className="bg-clip-text text-transparent bg-gradient-to-b from-indigo-700 via-indigo-400 to-indigo-300 text-8xl font-bold underline underline-offset-1">NOTE</span>
-  <p className="text-lg text-indigo-400 ">The initial search process may take longer than expected as the server is operating on a free tier account.</p>
+  <span className="bg-clip-text text-transparent bg-gradient-to-b from-indigo-600 via-indigo-600/50 to-indigo-300  text-8xl font-bold underline underline-offset-1">NOTE</span>
+  <p className="text-lg text-indigo-700 ">The initial search process may take longer than expected as the server is operating on a free tier account.</p>
 </div></div>}
 
 </div>
