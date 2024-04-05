@@ -21,7 +21,7 @@ const demoEmail = [
 
 const NavBar = () => {
   return (
-    <nav className="w-auto rounded-full bg-white  text-indigo-500  h-12   grid grid-cols-3 gap-5 p-2 pr-10 px-10 z-50">
+    <nav className="w-auto rounded-full bg-white  text-indigo-500  h-12  grid grid-cols-3 gap-5 p-2 pr-10 px-10 z-50">
       <div className="  p-2 rounded-full flex    items-center justify-center cursor-pointer  transition ease-in-out delay-150   hover:underline hover:underline-offset-2 duration-300">
         <Link href="/">Home</Link>
       </div>

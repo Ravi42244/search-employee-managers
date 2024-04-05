@@ -7,7 +7,7 @@ const DemoEmailCard = ({email}) => {
     <div  className="w-full border h-8 rounded-lg bg-indigo-100 flex items-center justify-between px-1 my-5 text-indigo-900 ">
     <div className="w-1/2 text-xs object-contain ">{email.slice(0,20)}...</div>
     <div onClick={()=>{
-navigator.clipboard.writeText(email);
+navigator?.clipboard?.writeText(email);
 toast({
 title: (
 <div className="flex space-x-1">

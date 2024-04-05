@@ -71,7 +71,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
           onSubmit={form.handleSubmit(emailSubmit)}
           className="w-full  flex items-center justify-center"
         >
-          <div className="w-1/2 flex-col items-center justify-center space-y-5 ">
+          <div className="md:w-1/2 flex-col items-center justify-center space-y-5 ">
             <div className=" w-full flex justify-center text-3xl font-bold text-indigo-900">
              Search Employee
             </div>
@@ -141,7 +141,7 @@ disabled={isPasteAndSearchLoading}
               type="reset"
                 variant="outline"
                 onClick={() => {
-                    navigator.clipboard.readText().then((copiedValue)=>{
+                    navigator?.clipboard?.readText().then((copiedValue)=>{
                       setisPasteAndSearchLoading(true)
                       setEmail(copiedValue);
                      
