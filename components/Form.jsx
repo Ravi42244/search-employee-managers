@@ -35,7 +35,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
   const [isPasteAndSearchLoading, setisPasteAndSearchLoading] = useState(false);
 
   useEffect(() => {
-    if (email && false) {
+    if (email) {
       toast({
         title: (<div className="flex w-[300px] h-5 items-center justify-between"><div>{email.slice(0,25)}...</div><div className="mr-5 scale-[200%]  text-indigo-700"> <Loader2 className="mr-2 h-4 w-4 animate-spin" /></div></div>),
       });
@@ -137,9 +137,11 @@ disabled={isPasteAndSearchLoading}
               type="submit"
               
               >
+                 <div className="flex items-center justify-center">
                  {isSearchLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" /> }
                 
                 Search
+                </div>
               </Button>
               <Button
 disabled={isPasteAndSearchLoading}
