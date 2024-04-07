@@ -157,8 +157,11 @@ disabled={isPasteAndSearchLoading}
 
                 }}
               >
+                <div className="md:flex md:items-center justify-center">
+
              {isPasteAndSearchLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" /> }
                 Paste & Search
+                </div>
               </Button>
             </div>
           </div>
