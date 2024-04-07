@@ -22,7 +22,7 @@ const EmpCard = ({firstName, lastName, workEmail,role}) => {
     <Card className="w-[350px] text-indigo-800 bg-gradient-to-t from-indigo-50">
     <CardHeader>
       <CardTitle>{<div className='flex items-center justify-between'><div>{`${firstName} ${lastName}`}</div><div className='group scale-50 cursor-pointer ' onClick={async()=>{
- await navigator.clipboard.writeText(workEmail);
+ await navigator?.clipboard.writeText(workEmail);
  toast({
   title: (
     <div className="flex space-x-1">

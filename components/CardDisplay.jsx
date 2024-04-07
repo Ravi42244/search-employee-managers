@@ -46,7 +46,7 @@ const CardDisplay = ({empData}) => {
     <div className={cn(' flex flex-col items-center justify-center ',!empData?.reportTo && "-mt-14")} >
 {!empData?.reportTo && (<div className='bg-white border rounded-md  p-2'>{empData?.firstName} {empData?.lastName}<span className='font-bold'> operates independently without reporting to anyone.</span></div>)   }
 <div className='w-[925px]  flex items-end justify-center font-thin'>|</div>
-   <EmpCard className="shadow-md" firstName={empData?.firstName} lastName={empData?.lastName} workEmail={empData?.email}  />
+   <EmpCard className="shadow-md" firstName={empData?.firstName} role={empData?.role} lastName={empData?.lastName} workEmail={empData?.email}  />
 </div>
 </div>
 </div>)}

@@ -23,6 +23,7 @@ import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { fetchData } from "@/utils/fetchData";
 import { cn } from "@/lib/utils";
+import copy from "copy-to-clipboard";
 
 const FormSchema = z.object({
   work_email: z.string().email(),
@@ -34,7 +35,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
   const [isPasteAndSearchLoading, setisPasteAndSearchLoading] = useState(false);
 
   useEffect(() => {
-    if (email) {
+    if (email && false) {
       toast({
         title: (<div className="flex w-[300px] h-5 items-center justify-between"><div>{email.slice(0,25)}...</div><div className="mr-5 scale-[200%]  text-indigo-700"> <Loader2 className="mr-2 h-4 w-4 animate-spin" /></div></div>),
       });
@@ -102,7 +103,12 @@ const InputForm = ({ BACKEND_URL, result }) => {
                     className="scale-[50%]"
                     onClick={async () => {
                       if (email) {
-                        navigator.clipboard.writeText(email);
+                        if(navigator.clipboard){
+
+                          await navigator?.clipboard?.writeText(email);
+                        }else{
+                          copy(email)
+                        }
                         toast({
                           title: (
                             <div className="flex space-x-1">
@@ -127,7 +133,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
               <Button
               
 disabled={isPasteAndSearchLoading}
-              className={cn("bg-indigo-600 hover:bg-indigo-800 w-full rounded-full", isSearchLoading && "")}
+              className={cn("bg-indigo-600 hover:bg-indigo-800 w-full col-span-2 md:col-span-1 rounded-full", isSearchLoading && "")}
               type="submit"
               
               >
@@ -137,14 +143,16 @@ disabled={isPasteAndSearchLoading}
               </Button>
               <Button
 disabled={isPasteAndSearchLoading}
-              className={cn("hover:bg-indigo-100 hover:text-indigo-900 rounded-full","")}
+              className={cn("hover:bg-indigo-100 hidden md:inline hover:text-indigo-900 rounded-full","")}
               type="reset"
                 variant="outline"
-                onClick={() => {
-                    navigator?.clipboard?.readText().then((copiedValue)=>{
+                onClick={async() => {
+                     navigator?.clipboard?.readText().then((copiedValue)=>{
                       setisPasteAndSearchLoading(true)
                       setEmail(copiedValue);
                      
+                    }).catch(()=>{
+                      setEmail("k");
                     })
 
                 }}

@@ -10,14 +10,7 @@ import {
 import { Badge } from "./ui/badge";
 import { toast } from "./ui/use-toast";
 import DemoEmailCard from "./DemoEmailCard";
-
-const demoEmail = [
-  "ravi.shankar@harbingergroup.com",
-  "rashmi.kulkarni@harbingergroup.com",
-  "parthajeet.c@harbingergroup.com",
-  "vikas.khare@harbingergroup.com",
-  "aniket.khedkar@harbingergroup.com",
-];
+import { demoEmail } from "@/CONSTANTS";
 
 const NavBar = () => {
   return (

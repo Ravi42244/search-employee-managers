@@ -1,15 +1,14 @@
+"use client"
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster"
 import MobileNavBar from "@/components/MobileNavBar";
+import { ArrowUp } from 'lucide-react';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Home",
-  description: "Search Employee Project",
-};
+
 
 
 export default function RootLayout({ children }) {
@@ -22,13 +21,19 @@ export default function RootLayout({ children }) {
         <NavBar />
         
 </div>
-<div className=" md:hidden absolute w-full flex items-center justify-end px-2 ">
-<MobileNavBar />
+<div className=" md:hidden fixed   w-full flex items-center justify-end px-2 ">
+  <div className="bg-indigo-300 opacity-65  m-2 rounded flex items-center justify-center">
+<MobileNavBar className="" />
+ </div>
 </div>
-<div>
+<div className="w-full">
 
         {children}
 </div>
+<div className="fixed bottom-5 m-2 right-3 scroll-smooth cursor-pointer rounded-full bg-indigo-200 opacity-65 flex items-end  p-1 scale-[125%] "  onClick={()=>{
+window.scrollTo({top:0,left:0,behavior:"smooth"})
+
+}}><ArrowUp className="animate-bounce "/></div>
         </div>
         <Toaster />
         </body>
