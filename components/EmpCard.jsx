@@ -19,9 +19,9 @@ const EmpCard = ({firstName, lastName, workEmail,role}) => {
 
  
   return (
-    <Card className="w-[350px] text-indigo-800 bg-gradient-to-t from-indigo-50">
+    <Card className="w-[250px] md:w-[350px] text-indigo-800 bg-gradient-to-t from-indigo-50">
     <CardHeader>
-      <CardTitle>{<div className='flex items-center justify-between'><div>{`${firstName} ${lastName}`}</div><div className='group scale-50 cursor-pointer ' onClick={async()=>{
+      <CardTitle>{<div className='flex items-center text-sm md:text-base justify-between'><div>{`${firstName} ${lastName}`}</div><div className='group scale-50 cursor-pointer ' onClick={async()=>{
  await navigator?.clipboard.writeText(workEmail);
  toast({
   title: (
@@ -34,8 +34,8 @@ const EmpCard = ({firstName, lastName, workEmail,role}) => {
   ),
 });
       }}><Badge variant="outline" className="group-hover:bg-neutral-200 transition duration-300 ease-in-out text-indigo-700"><ClipboardCopy/></Badge></div></div>}</CardTitle>
-      <CardDescription>{workEmail}</CardDescription>
-      <CardDescription>{role}</CardDescription>
+      <CardDescription className="text-xs">{workEmail}</CardDescription>
+      <CardDescription className="text-xs">{role}</CardDescription>
     </CardHeader>
   </Card>
   )

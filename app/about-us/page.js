@@ -14,9 +14,11 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon,CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import copy from "copy-to-clipboard";
+import { toast } from "@/components/ui/use-toast";
 
 
 export default function AboutUs() {
@@ -43,13 +45,13 @@ const [showMore, setShowMore] = useState(false)
 
 <div className="w-full h-screen md:space-y-5 space-y-2   snap-center snap-always ">
   <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-indigo-300 md:text-9xl text-6xl font-bold underline underline-offset-1">About Us</span>
-  <div  className="text-lg p-5 text-white w-full relative inline-flex">
+  <div  className="text-lg p-5 text-white w-full relative text-center inline-flex">
   <p>Hello, I am <span className="text-2xl font-bold">Ravi Shankar</span>, I bring 2 years of working experience in the field. As a software engineer, I am driven by curiosity and possess excellent problem-solving skills.<Button className={cn("bg-transparent rounded-full mx-2 px-2  cursor-pointer  border-0 hover:bg-indigo-300 hover:text-indigo-900 text-indigo-100 inline",showMore && "hidden")} onClick={()=>{
 setShowMore((prev)=>!prev)
-  }}>Show More...</Button><span className={cn("hidden",showMore && "inline")}> I have an insatiable thirst for learning new technologies, always striving to stay up-to-date with the latest advancements.Throughout my career, I have worked on numerous interesting projects that showcase my technical expertise and passion for software engineering. If you are interested, you can explore more of my projects and professional experiences on my.</span><Button  className={cn("bg-transparent rounded-full border-0  mx-2 px-2 hover:bg-indigo-300  cursor-pointer hidden text-indigo-100 hover:text-indigo-900",showMore && "inline")} onClick={()=>{
+  }}>Show More...</Button><span className={cn("hidden",showMore && "inline")}> I have an insatiable thirst for learning new technologies, always striving to stay up-to-date with the latest advancements.Throughout my career,<br/> I have worked on numerous interesting projects that showcase my technical expertise and passion for software engineering. If you are interested, you can explore more of my projects and professional experiences on my <div className="w-full flex  items-center  justify-center "><Link target="_blank" href="http://www.linkedin.com/in/ravi-shankar-fullstack-developer" className="text-blue-900 hover:bg-indigo-300 rounded-xl px-2 py-1 mx-[0.1rem] hover:text-indigo-900 font-bold text-lg "><Image width={100} height={20} src={LinkedInLogo} alt="LinkedIn Logo" /></Link>.</div></span><span  className={cn("bg-transparent rounded-full border-0  mx-2 text-xs p-2 hover:bg-indigo-300  cursor-pointer hidden text-indigo-100 hover:text-indigo-900",showMore && "inline")} onClick={()=>{
     setShowMore((prev)=>!prev)
-      }}>Show Less</Button>
-  {/* <div className=" flex items-end ml-1  absolute bottom-1 " > <Link target="_blank" href="http://www.linkedin.com/in/ravi-shankar-fullstack-developer" className="text-blue-900 font-bold text-lg "><Image width={100} height={20} src={LinkedInLogo} alt="LinkedIn Logo" /></Link> .</div> */}
+      }}>Show Less</span>
+
   </p>
   </div>
   <div className="md:mt-20 px-2 w-full md:flex flex-col md:flex-row md:space-x-2 space-y-3 md:space-y-0 md:w-full  md:items-center md:justify-evenly">
@@ -99,7 +101,26 @@ For the backend, our choice of technologies includes Node.Js and Express.Js to h
   <div className=" md:hover:scale-125 md:h-1/2 transition ease-in-out delay-150 md:hover:translate-y-3  duration-300">
 
   <span className="bg-clip-text text-transparent p-5 bg-gradient-to-b from-white to-indigo-300 md:text-9xl text-6xl font-bold underline underline-offset-1">Contact</span>
-  <p className="text-lg text-white  ">To get in touch, you can reach me via email at ravi42244@gmail.com. Please feel free to reach out for any further inquiries.</p>
+  <p className="text-lg text-white  ">To get in touch, you can reach me via email at <span onClick={async()=>{
+ 
+  if(navigator.clipboard){
+
+    await navigator?.clipboard?.writeText("ravi42244@gmail.com");
+  }else{
+    copy("ravi42244@gmail.com")
+  }
+  toast({
+    title: (
+      <div className="flex space-x-1">
+        <div className="text-emerald-700">
+          <CheckCircle />
+        </div>{" "}
+        <div>{` Copied: ravi42244@gmail.com`}</div>
+      </div>
+    ),
+  });
+
+  }} className=" bg-indigo-800 px-2 cursor-pointer rounded-md text-xl font-bold md:text-indigo-300 text-indigo-100 hover:text-indigo-100">ravi42244@gmail.com</span>. <br/>Please feel free to reach out for any further inquiries.</p>
   </div>
 </div>
 

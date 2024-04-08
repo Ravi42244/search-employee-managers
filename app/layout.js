@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster"
+// import { Toaster as Sonner_Toaster } from "@/components/ui/sonner"
 import MobileNavBar from "@/components/MobileNavBar";
 import { ArrowUp } from 'lucide-react';
 
@@ -22,7 +23,7 @@ export default function RootLayout({ children }) {
         
 </div>
 <div className=" md:hidden fixed   w-full flex items-center justify-end px-2 ">
-  <div className="bg-indigo-300 opacity-65  m-2 rounded flex items-center justify-center">
+  <div className=" opacity-65  m-2 rounded flex items-center justify-center">
 <MobileNavBar className="" />
  </div>
 </div>
@@ -36,6 +37,7 @@ window.scrollTo({top:0,left:0,behavior:"smooth"})
 }}><ArrowUp className="animate-bounce "/></div>
         </div>
         <Toaster />
+        {/* <Sonner_Toaster /> */}
         </body>
     </html>
   );

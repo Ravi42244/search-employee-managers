@@ -1,12 +1,21 @@
 "use client"
 import CardDisplay from "@/components/CardDisplay";
 import InputForm from "@/components/Form";
+import MobileCardDisplay from "@/components/MobileCardDisplay";
 import { useEffect, useState } from "react";
+
+import { toast } from "@/components/ui/use-toast";
+
 
 
 
 export default function Home() {
-
+  useEffect(()=>{
+  
+    toast({
+      title: "Find demo email addresses in Nav option."})
+  },[])
+  
   const [BACKEND_URL, setBACKEND_URL] = useState(process.env.NEXT_PUBLIC_BACKEND_URL)
   const [empData, setEmpData]= useState()
 const result = (data) => {setEmpData(data)}
@@ -14,6 +23,7 @@ const result = (data) => {setEmpData(data)}
 useEffect(()=>{
 
 },[empData])
+
 
 
   return (
@@ -30,8 +40,8 @@ useEffect(()=>{
   {empData  ?<> <div className="hidden md:flex items-center justify-center ">
     <CardDisplay empData={empData}/>
 </div>
-<div>
-  Searched
+<div className="md:hidden  w-full">
+ <MobileCardDisplay empData={empData}/>
 </div>
 
 </> : <div className="w-full text-center flex items-center justify-center -mt-24 text-xl "><div className="w-1/2 space-y-5 scroll-mt-60  transition ease-in-out delay-150  duration-300" id="Note_section">
