@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CheckCheck, CheckCircle, ClipboardCopy, Loader2 } from "lucide-react";
+import { CheckCircle, ClipboardCopy, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -10,17 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import axios from "axios";
 import { fetchData } from "@/utils/fetchData";
 import { cn } from "@/lib/utils";
 import copy from "copy-to-clipboard";
@@ -37,21 +28,31 @@ const InputForm = ({ BACKEND_URL, result }) => {
   useEffect(() => {
     if (email) {
       toast({
-        title: (<div className="flex w-[300px] h-5 items-center justify-between"><div>{email.slice(0,25)}...</div><div className="mr-5 scale-[200%]  text-indigo-700"> <Loader2 className="mr-2 h-4 w-4 animate-spin" /></div></div>),
+        title: (
+          <div className="flex w-[300px] h-5 items-center justify-between">
+            <div>{email.slice(0, 25)}...</div>
+            <div className="mr-5 scale-[200%]  text-indigo-700">
+              {" "}
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            </div>
+          </div>
+        ),
       });
 
-      fetchData(BACKEND_URL, email).then((res => {
+      fetchData(BACKEND_URL, email)
+        .then((res) => {
+          setisSearchLoading(false);
+          setisPasteAndSearchLoading(false);
+          result(res);
+        })
+        .catch((err) => {
+          setisSearchLoading(false);
 
-        setisSearchLoading(false)
-        setisPasteAndSearchLoading(false)
-        result(res)})).catch((err)=>{
-          setisSearchLoading(false)
-          
-        setisPasteAndSearchLoading(false)
-        result({error_message:err,email})
+          setisPasteAndSearchLoading(false);
+          result({ error_message: err, email });
         });
     }
-  }, [email, BACKEND_URL,isSearchLoading,isPasteAndSearchLoading]);
+  }, [email, BACKEND_URL, isSearchLoading, isPasteAndSearchLoading]);
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -61,7 +62,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
   });
 
   function emailSubmit(data) {
-    setisSearchLoading(true)
+    setisSearchLoading(true);
     setEmail(data.work_email);
   }
 
@@ -74,7 +75,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
         >
           <div className="md:w-1/2 flex-col items-center justify-center space-y-5 ">
             <div className=" w-full flex justify-center text-3xl font-bold text-indigo-900">
-             Search Employee
+              Search Employee
             </div>
 
             <div className="w-full">
@@ -87,7 +88,7 @@ const InputForm = ({ BACKEND_URL, result }) => {
                       <FormItem>
                         <FormControl>
                           <Input
-                          className="rounded-full focus-visible:ring-0 focus-visible: focus-visible:ring-offset-0"
+                            className="rounded-full focus-visible:ring-0 focus-visible: focus-visible:ring-offset-0"
                             type="email"
                             placeholder="Work Email"
                             {...field}
@@ -103,11 +104,10 @@ const InputForm = ({ BACKEND_URL, result }) => {
                     className="scale-[50%]"
                     onClick={async () => {
                       if (email) {
-                        if(navigator.clipboard){
-
+                        if (navigator.clipboard) {
                           await navigator?.clipboard?.writeText(email);
-                        }else{
-                          copy(email)
+                        } else {
+                          copy(email);
                         }
                         toast({
                           title: (
@@ -128,41 +128,46 @@ const InputForm = ({ BACKEND_URL, result }) => {
               </div>
             </div>
             <div className="w-full grid grid-cols-2 gap-5 ">
-          
-
               <Button
-              
-disabled={isPasteAndSearchLoading}
-              className={cn("bg-indigo-600 hover:bg-indigo-800 w-full col-span-2 md:col-span-1 rounded-full", isSearchLoading && "")}
-              type="submit"
-              
+                disabled={isPasteAndSearchLoading}
+                className={cn(
+                  "bg-indigo-600 hover:bg-indigo-800 w-full col-span-2 md:col-span-1 rounded-full",
+                  isSearchLoading && ""
+                )}
+                type="submit"
               >
-                 <div className="flex items-center justify-center">
-                 {isSearchLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" /> }
-                
-                Search
+                <div className="flex items-center justify-center">
+                  {isSearchLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Search
                 </div>
               </Button>
               <Button
-disabled={isPasteAndSearchLoading}
-              className={cn("hover:bg-indigo-100 hidden md:inline hover:text-indigo-900 rounded-full","")}
-              type="reset"
+                disabled={isPasteAndSearchLoading}
+                className={cn(
+                  "hover:bg-indigo-100 hidden md:inline hover:text-indigo-900 rounded-full",
+                  ""
+                )}
+                type="reset"
                 variant="outline"
-                onClick={async() => {
-                     navigator?.clipboard?.readText().then((copiedValue)=>{
-                      setisPasteAndSearchLoading(true)
+                onClick={async () => {
+                  navigator?.clipboard
+                    ?.readText()
+                    .then((copiedValue) => {
+                      setisPasteAndSearchLoading(true);
                       setEmail(copiedValue);
-                     
-                    }).catch(()=>{
-                      setEmail("k");
                     })
-
+                    .catch(() => {
+                      setEmail("k");
+                    });
                 }}
               >
                 <div className="md:flex md:items-center justify-center">
-
-             {isPasteAndSearchLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" /> }
-                Paste & Search
+                  {isPasteAndSearchLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Paste & Search
                 </div>
               </Button>
             </div>

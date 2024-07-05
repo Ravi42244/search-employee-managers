@@ -1,5 +1,4 @@
-"use client"
-import { CheckCircle, ClipboardCopy, HomeIcon } from "lucide-react";
+"use client";
 import Link from "next/link";
 import React from "react";
 import {
@@ -7,8 +6,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { Badge } from "./ui/badge";
-import { toast } from "./ui/use-toast";
 import DemoEmailCard from "./DemoEmailCard";
 import { demoEmail } from "@/CONSTANTS";
 
@@ -21,10 +18,10 @@ const NavBar = () => {
 
       <div className="  p-2 rounded-full  flex items-center justify-center cursor-pointer  transition ease-in-out delay-150   hover:underline hover:underline-offset-2 duration-300 ">
         <HoverCard>
-          <HoverCardTrigger >For Demo</HoverCardTrigger>
+          <HoverCardTrigger>For Demo</HoverCardTrigger>
           <HoverCardContent className="cursor-default">
-            {demoEmail?.map((email,index) => (
-              <DemoEmailCard  email={email} key={index}/>
+            {demoEmail?.map((email, index) => (
+              <DemoEmailCard email={email} key={index} />
             ))}
           </HoverCardContent>
         </HoverCard>
